@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Edit Attendance — RollSync</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+         ===================================== -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+
+            <div class="logo-mark">
+                R
+            </div>
+
+            <span>
+                RollSync
+            </span>
+
+        </div>
+
+
+        <div class="nav-user">
+
+            <a
+                href="dashboard.html"
+                class="back-dashboard-btn"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN
+         ===================================== -->
+
+    <main class="form-page-container">
+
+
+        <!-- HEADER -->
+
+        <section class="form-page-header">
+
+            <p class="dashboard-label">
+                DAILY ATTENDANCE
+            </p>
+
+            <h1>
+                Edit attendance
+            </h1>
+
+            <p>
+                Correct the attendance record for this day.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================
+             FORM CARD
+             ================================= -->
+
+        <section class="form-card">
+
+
+            <!-- CURRENT SEMESTER -->
+
+            <div class="current-semester-box">
+
+                <span>
+                    CURRENT SEMESTER
+                </span>
+
+                <strong id="currentSemester">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="editAttendanceForm">
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="attendanceDate">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="attendanceDate"
+                        required
+                    >
+
+                    <small>
+                        Date of this attendance record.
+                    </small>
+
+                </div>
+
+
+
+                <!-- CLASSES CONDUCTED -->
+
+                <div class="form-group">
+
+                    <label for="classesConducted">
+                        Classes conducted
+                    </label>
+
+                    <input
+                        type="number"
+                        id="classesConducted"
+                        min="1"
+                        step="1"
+                        required
+                    >
+
+                    <small>
+                        Total number of classes that happened on this day.
+                    </small>
+
+                </div>
+
+
+
+                <!-- CLASSES ATTENDED -->
+
+                <div class="form-group">
+
+                    <label for="classesAttended">
+                        Classes attended
+                    </label>
+
+                    <input
+                        type="number"
+                        id="classesAttended"
+                        min="0"
+                        step="1"
+                        required
+                    >
+
+                    <small>
+                        Number of classes you attended.
+                    </small>
+
+                </div>
+
+
+
+                <!-- DAILY PREVIEW -->
+
+                <div
+                    class="attendance-preview"
+                    id="attendancePreview"
+                >
+
+                    <span>
+                        Daily attendance
+                    </span>
+
+                    <strong id="dailyPercentage">
+                        0.00%
+                    </strong>
+
+                </div>
+
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="formError"
+                    class="form-error"
+                    style="display: none;"
+                ></div>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="dashboard.html"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="updateAttendanceBtn"
+                    >
+                        Update Attendance
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="edit-attendance.js"></script>
+
+</body>
+
+</html>

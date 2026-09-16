@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Setup — RollSync</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <main class="setup-page">
+
+        <div class="setup-container">
+
+            <!-- Logo -->
+            <div class="setup-logo">
+                <div class="logo-mark">R</div>
+                <span>RollSync</span>
+            </div>
+
+            <!-- Progress -->
+            <div class="setup-progress">
+                <div class="progress-step completed">
+                    <span>✓</span>
+                    Profile
+                </div>
+
+                <div class="progress-line active"></div>
+
+                <div class="progress-step active">
+                    <span>2</span>
+                    Attendance
+                </div>
+            </div>
+
+            <!-- Header -->
+            <div class="setup-header">
+
+                <p class="setup-label">STEP 2 OF 2</p>
+
+                <h1>Set up your attendance</h1>
+
+                <p>
+                    Enter your attendance so far this semester.
+                    RollSync will use this as your starting point.
+                </p>
+
+            </div>
+
+            <!-- Form -->
+            <form id="attendanceForm" class="profile-form">
+
+                <div class="form-group">
+
+                    <label for="totalClasses">
+                        Total classes conducted so far
+                    </label>
+
+                    <input
+                        type="number"
+                        id="totalClasses"
+                        min="0"
+                        step="1"
+                        placeholder="e.g. 120"
+                        required
+                    >
+
+                    <small>
+                        Enter the total number of classes conducted
+                        until today.
+                    </small>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="attendedClasses">
+                        Total classes attended so far
+                    </label>
+
+                    <input
+                        type="number"
+                        id="attendedClasses"
+                        min="0"
+                        step="1"
+                        placeholder="e.g. 98"
+                        required
+                    >
+
+                    <small>
+                        Enter how many of those classes you attended.
+                    </small>
+
+                </div>
+
+
+                <!-- Preview -->
+                <div class="attendance-preview">
+
+                    <p>Your starting attendance</p>
+
+                    <div id="attendancePercentage">
+                        0.00%
+                    </div>
+
+                    <span id="attendanceSummary">
+                        0 of 0 classes attended
+                    </span>
+
+                </div>
+
+
+                <div id="errorMessage" class="form-error"></div>
+
+
+                <button type="submit" class="primary-btn">
+                    Start Tracking
+                    <span>→</span>
+                </button>
+
+            </form>
+
+            <p class="setup-note">
+                You can update your attendance records later.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script src="attendance-setup.js"></script>
+
+</body>
+</html>

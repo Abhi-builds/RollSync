@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RollSync — Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+    <!-- Chart.js -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="dashboard-nav">
+
+
+        <!-- BRAND -->
+
+        <a
+            href="dashboard.html"
+            class="dashboard-brand"
+        >
+
+            <div class="dashboard-logo-mark">
+                R
+            </div>
+
+            <div class="dashboard-brand-text">
+
+                <strong>
+                    RollSync
+                </strong>
+
+                <span>
+                    by Riishu
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <div class="dashboard-navigation">
+
+            <a
+                href="dashboard.html"
+                class="dashboard-nav-link active"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="semester-history.html"
+                class="dashboard-nav-link"
+            >
+                Semester History
+            </a>
+
+            <a
+                href="semester.html"
+                class="dashboard-nav-link"
+            >
+                Semester
+            </a>
+
+            <a
+                href="profile.html"
+                class="dashboard-nav-link"
+            >
+                Profile
+            </a>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="nav-user">
+
+            <span id="navUserName">
+                Student
+            </span>
+
+            <button
+                id="logoutBtn"
+                type="button"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAIN DASHBOARD
+    ========================================== -->
+
+    <main class="dashboard-container">
+
+
+        <!-- =====================================
+             WELCOME SECTION
+        ====================================== -->
+
+        <section class="dashboard-welcome">
+
+            <div>
+
+                <p class="dashboard-label">
+                    ATTENDANCE DASHBOARD
+                </p>
+
+
+                <h1>
+
+                    Welcome back,
+                    <span id="studentName">
+                        Student
+                    </span>
+
+                </h1>
+
+
+                <p id="studentInfo">
+                    Your semester attendance overview
+                </p>
+
+            </div>
+
+
+            <button
+                class="add-attendance-btn"
+                id="addAttendanceBtn"
+                type="button"
+            >
+
+                + Add Today's Attendance
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =====================================
+             MAIN ATTENDANCE CARD
+        ====================================== -->
+
+        <section class="attendance-main-card">
+
+
+            <!-- Attendance Circle -->
+
+            <div class="attendance-circle-container">
+
+                <div class="attendance-circle">
+
+                    <div>
+
+                        <strong id="attendancePercentage">
+                            0.00%
+                        </strong>
+
+                        <span>
+                            Attendance
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Attendance Details -->
+
+            <div class="attendance-details">
+
+
+                <div
+                    class="status-badge"
+                    id="attendanceStatus"
+                >
+                    Calculating...
+                </div>
+
+
+                <h2>
+                    Your current attendance
+                </h2>
+
+
+                <p>
+                    Based on all classes recorded this semester.
+                </p>
+
+
+                <!-- Progress Bar -->
+
+                <div class="attendance-progress">
+
+                    <div
+                        id="attendanceProgressBar"
+                        class="attendance-progress-fill"
+                    ></div>
+
+                </div>
+
+
+                <!-- Target -->
+
+                <div class="target-row">
+
+                    <span>
+                        Minimum required
+                    </span>
+
+                    <strong id="minimumAttendance">
+                        75%
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             BASIC STATISTICS
+        ====================================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        Classes Attended
+                    </span>
+
+                    <strong id="attendedClasses">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    #
+                </div>
+
+                <div>
+
+                    <span>
+                        Total Classes
+                    </span>
+
+                    <strong id="totalClasses">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    +
+                </div>
+
+                <div>
+
+                    <span>
+                        Can Miss
+                    </span>
+
+                    <strong id="canMiss">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ↑
+                </div>
+
+                <div>
+
+                    <span>
+                        Needed to Reach Target
+                    </span>
+
+                    <strong id="neededClasses">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ATTENDANCE INTELLIGENCE
+        ====================================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        ATTENDANCE INSIGHTS
+                    </p>
+
+                    <h2>
+                        Plan your attendance
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="insight-grid">
+
+
+                <div class="insight-card">
+
+                    <div class="insight-icon">
+                        +
+                    </div>
+
+                    <div>
+
+                        <span>
+                            If you attend the next class
+                        </span>
+
+                        <strong id="afterAttend">
+                            0.00%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="insight-card">
+
+                    <div class="insight-icon">
+                        −
+                    </div>
+
+                    <div>
+
+                        <span>
+                            If you miss the next class
+                        </span>
+
+                        <strong id="afterMiss">
+                            0.00%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="insight-card">
+
+                    <div class="insight-icon">
+                        ↑
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Classes needed for target
+                        </span>
+
+                        <strong id="targetNeeded">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="insight-card">
+
+                    <div class="insight-icon">
+                        ↓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Classes you can miss
+                        </span>
+
+                        <strong id="targetMissable">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                id="smartMessage"
+                class="smart-message"
+            >
+                Loading attendance insight...
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             ATTENDANCE TREND
+        ====================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        SEMESTER TREND
+                    </p>
+
+                    <h2>
+                        Attendance trend
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="chart-container">
+
+                <canvas
+                    id="attendanceChart"
+                ></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             SEMESTER INFORMATION
+        ====================================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        SEMESTER
+                    </p>
+
+                    <h2>
+                        Semester information
+                    </h2>
+
+                </div>
+
+
+                <div class="history-actions">
+
+                    <a
+                        href="semester-history.html"
+                        class="secondary-btn"
+                    >
+                        History
+                    </a>
+
+                    <a
+                        href="semester.html"
+                        class="add-attendance-btn"
+                    >
+                        Manage Semester
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="semester-info-grid">
+
+
+                <div>
+
+                    <span>
+                        Semester
+                    </span>
+
+                    <strong id="semesterName">
+                        —
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Academic Year
+                    </span>
+
+                    <strong id="academicYear">
+                        —
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        College
+                    </span>
+
+                    <strong id="collegeName">
+                        —
+                    </strong>
+
+                </div>
+
+
+
+                <div>
+
+                    <span>
+                        Branch
+                    </span>
+
+                    <strong id="branchName">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ATTENDANCE HISTORY
+        ====================================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        HISTORY
+                    </p>
+
+                    <h2>
+                        Recent attendance
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="add-attendance-btn"
+                    id="historyAddBtn"
+                    type="button"
+                >
+
+                    + Add Attendance
+
+                </button>
+
+            </div>
+
+
+
+            <!-- Attendance Records -->
+
+            <div
+                id="attendanceHistory"
+                class="attendance-history"
+            >
+
+                <!-- JavaScript loads records here -->
+
+            </div>
+
+
+
+            <!-- Empty History -->
+
+            <div
+                id="emptyHistory"
+                class="empty-history"
+                style="display: none;"
+            >
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+
+                <h3>
+                    No daily records yet
+                </h3>
+
+
+                <p>
+                    Add your first daily attendance record
+                    to start building your history.
+                </p>
+
+
+                <button
+                    class="add-attendance-btn"
+                    id="emptyAddBtn"
+                    type="button"
+                >
+
+                    + Add Attendance
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         DASHBOARD JAVASCRIPT
+    ========================================== -->
+
+    <script src="dashboard.js"></script>
+
+
+</body>
+
+</html>

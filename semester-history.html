@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Semester History — RollSync</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+         ===================================== -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+
+            <div class="logo-mark">
+                R
+            </div>
+
+            <span>
+                RollSync
+            </span>
+
+        </div>
+
+
+        <div class="nav-user">
+
+            <a
+                href="dashboard.html"
+                class="back-dashboard-btn"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN
+         ===================================== -->
+
+    <main class="history-page-container">
+
+
+        <!-- =================================
+             HEADER
+             ================================= -->
+
+        <section class="history-page-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    SEMESTER HISTORY
+                </p>
+
+                <h1>
+                    Your academic journey
+                </h1>
+
+                <p>
+                    View your attendance performance
+                    across semesters.
+                </p>
+
+            </div>
+
+
+            <a
+                href="semester.html"
+                class="add-attendance-btn"
+            >
+                + Start New Semester
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================
+             HISTORY CARD
+             ================================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        HISTORY
+                    </p>
+
+                    <h2>
+                        Previous semesters
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOADING -->
+
+            <div
+                id="semesterLoading"
+                class="semester-loading"
+            >
+
+                Loading semester history...
+
+            </div>
+
+
+            <!-- SEMESTER GRID -->
+
+            <div
+                id="semesterHistoryGrid"
+                class="semester-history-grid"
+            ></div>
+
+
+            <!-- EMPTY -->
+
+            <div
+                id="semesterEmpty"
+                class="empty-history"
+                style="display: none;"
+            >
+
+                <div class="empty-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    No semesters yet
+                </h3>
+
+                <p>
+                    Start your first semester to
+                    begin tracking your academic journey.
+                </p>
+
+                <a
+                    href="semester.html"
+                    class="primary-btn"
+                >
+                    Start Semester
+                </a>
+
+            </div>
+
+
+            <!-- ERROR -->
+
+            <div
+                id="semesterError"
+                class="form-error"
+                style="display: none;"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="semester-history.js"></script>
+
+</body>
+
+</html>

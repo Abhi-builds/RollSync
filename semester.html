@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Semester Setup — RollSync</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+         ===================================== -->
+
+    <nav class="dashboard-nav">
+
+        <div class="dashboard-logo">
+
+            <div class="logo-mark">
+                R
+            </div>
+
+            <span>
+                RollSync
+            </span>
+
+        </div>
+
+
+        <div class="nav-user">
+
+            <a
+                href="dashboard.html"
+                class="back-dashboard-btn"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         MAIN
+         ===================================== -->
+
+    <main class="form-page-container">
+
+
+        <!-- HEADER -->
+
+        <section class="form-page-header">
+
+            <p class="dashboard-label">
+                SEMESTER MANAGEMENT
+            </p>
+
+            <h1>
+                Start a new semester
+            </h1>
+
+            <p>
+                Create a new semester while keeping
+                your previous attendance history safe.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================
+             FORM CARD
+             ================================= -->
+
+        <section class="form-card">
+
+
+            <!-- WARNING -->
+
+            <div class="semester-warning">
+
+                <strong>
+                    Starting a new semester
+                </strong>
+
+                <p>
+                    Your previous semester will be kept
+                    in your academic history. Only the
+                    new semester will be active on your dashboard.
+                </p>
+
+            </div>
+
+
+
+            <form id="semesterForm">
+
+
+                <!-- SEMESTER -->
+
+                <div class="form-group">
+
+                    <label for="semester">
+                        Semester
+                    </label>
+
+                    <select
+                        id="semester"
+                        required
+                    >
+
+                        <option value="">
+                            Select semester
+                        </option>
+
+                        <option value="1st Semester">
+                            1st Semester
+                        </option>
+
+                        <option value="2nd Semester">
+                            2nd Semester
+                        </option>
+
+                        <option value="3rd Semester">
+                            3rd Semester
+                        </option>
+
+                        <option value="4th Semester">
+                            4th Semester
+                        </option>
+
+                        <option value="5th Semester">
+                            5th Semester
+                        </option>
+
+                        <option value="6th Semester">
+                            6th Semester
+                        </option>
+
+                        <option value="7th Semester">
+                            7th Semester
+                        </option>
+
+                        <option value="8th Semester">
+                            8th Semester
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ACADEMIC YEAR -->
+
+                <div class="form-group">
+
+                    <label for="academicYear">
+                        Academic Year
+                    </label>
+
+                    <input
+                        type="text"
+                        id="academicYear"
+                        placeholder="Example: 2025-29"
+                        required
+                    >
+
+                    <small>
+                        Example: 2025-29
+                    </small>
+
+                </div>
+
+
+
+                <!-- STARTING TOTAL -->
+
+                <div class="form-group">
+
+                    <label for="startingTotal">
+                        Total classes already conducted
+                    </label>
+
+                    <input
+                        type="number"
+                        id="startingTotal"
+                        min="0"
+                        step="1"
+                        value="0"
+                        required
+                    >
+
+                    <small>
+                        Enter classes that happened before
+                        you started using RollSync for this semester.
+                    </small>
+
+                </div>
+
+
+
+                <!-- STARTING ATTENDED -->
+
+                <div class="form-group">
+
+                    <label for="startingAttended">
+                        Classes already attended
+                    </label>
+
+                    <input
+                        type="number"
+                        id="startingAttended"
+                        min="0"
+                        step="1"
+                        value="0"
+                        required
+                    >
+
+                    <small>
+                        This cannot be greater than total classes.
+                    </small>
+
+                </div>
+
+
+
+                <!-- PREVIEW -->
+
+                <div
+                    class="attendance-preview"
+                    id="semesterPreview"
+                >
+
+                    <span>
+                        Starting attendance
+                    </span>
+
+                    <strong id="startingPercentage">
+                        0.00%
+                    </strong>
+
+                </div>
+
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="formError"
+                    class="form-error"
+                    style="display: none;"
+                ></div>
+
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="semester-history.html"
+                        class="secondary-btn"
+                    >
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="primary-btn"
+                        id="createSemesterBtn"
+                    >
+                        Start Semester
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="semester.js"></script>
+
+</body>
+
+</html>

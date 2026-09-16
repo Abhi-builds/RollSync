@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>RollSync — Profile & Settings</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+</head>
+
+<body>
+
+    <main class="profile-page">
+
+        <div class="profile-container">
+
+            <!-- HEADER -->
+
+            <div class="profile-page-header">
+
+                <a
+                    href="dashboard.html"
+                    class="profile-back"
+                >
+                    ← Dashboard
+                </a>
+
+                <div>
+
+                    <p class="dashboard-label">
+                        ACCOUNT
+                    </p>
+
+                    <h1 id="pageTitle">
+                        Profile & Settings
+                    </h1>
+
+                    <p id="pageSubtitle">
+                        Manage your RollSync profile and attendance settings.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE CARD -->
+
+            <section class="profile-card">
+
+                <div class="profile-card-header">
+
+                    <div>
+
+                        <p class="profile-section-label">
+                            PERSONAL INFORMATION
+                        </p>
+
+                        <h2>
+                            Your Profile
+                        </h2>
+
+                        <p>
+                            Keep your student information up to date.
+                        </p>
+
+                    </div>
+
+                    <div
+                        class="profile-avatar"
+                        id="profileAvatar"
+                    >
+                        R
+                    </div>
+
+                </div>
+
+
+                <form id="profileForm">
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="profile-form-group">
+
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- COLLEGE -->
+
+                    <div class="profile-form-group">
+
+                        <label for="college">
+                            College
+                        </label>
+
+                        <input
+                            type="text"
+                            id="college"
+                            placeholder="Enter your college name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- ROLL NUMBER -->
+
+                    <div class="profile-form-group">
+
+                        <label for="rollNumber">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rollNumber"
+                            placeholder="Enter your roll number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- BRANCH -->
+
+                    <div class="profile-form-group">
+
+                        <label for="branch">
+                            Branch
+                        </label>
+
+                        <input
+                            type="text"
+                            id="branch"
+                            placeholder="e.g. CSE AIML"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- SEMESTER + YEAR -->
+
+                    <div class="profile-form-row">
+
+                        <div class="profile-form-group">
+
+                            <label for="semester">
+                                Current Semester
+                            </label>
+
+                            <select
+                                id="semester"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Semester
+                                </option>
+
+                                <option value="1st Semester">
+                                    1st Semester
+                                </option>
+
+                                <option value="2nd Semester">
+                                    2nd Semester
+                                </option>
+
+                                <option value="3rd Semester">
+                                    3rd Semester
+                                </option>
+
+                                <option value="4th Semester">
+                                    4th Semester
+                                </option>
+
+                                <option value="5th Semester">
+                                    5th Semester
+                                </option>
+
+                                <option value="6th Semester">
+                                    6th Semester
+                                </option>
+
+                                <option value="7th Semester">
+                                    7th Semester
+                                </option>
+
+                                <option value="8th Semester">
+                                    8th Semester
+                                </option>
+
+                            </select>
+
+                            <small id="semesterHelp">
+                                Semester is managed separately.
+                            </small>
+
+                        </div>
+
+
+                        <div class="profile-form-group">
+
+                            <label for="academicYear">
+                                Academic Year
+                            </label>
+
+                            <input
+                                type="text"
+                                id="academicYear"
+                                placeholder="2025-29"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ATTENDANCE TARGET -->
+
+                    <div class="profile-setting-box">
+
+                        <div>
+
+                            <p class="profile-section-label">
+                                ATTENDANCE SETTING
+                            </p>
+
+                            <h3>
+                                Minimum Attendance Target
+                            </h3>
+
+                            <p>
+                                RollSync uses this target to calculate your attendance status and required classes.
+                            </p>
+
+                        </div>
+
+
+                        <div class="attendance-target-input">
+
+                            <input
+                                type="number"
+                                id="minimumAttendance"
+                                min="1"
+                                max="100"
+                                step="1"
+                                required
+                            >
+
+                            <span>%</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="profile-account-box">
+
+                        <div>
+
+                            <span>
+                                ACCOUNT EMAIL
+                            </span>
+
+                            <strong id="accountEmail">
+                                Loading...
+                            </strong>
+
+                        </div>
+
+                        <div class="email-status">
+                            Verified
+                        </div>
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <p
+                        id="profileMessage"
+                        class="profile-message"
+                    ></p>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="profile-actions">
+
+                        <a
+                            href="dashboard.html"
+                            class="profile-secondary-btn"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="profile-primary-btn"
+                            id="saveProfileBtn"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- SEMESTER MANAGEMENT -->
+
+            <section class="profile-card profile-management-card">
+
+                <div class="profile-management-content">
+
+                    <div>
+
+                        <p class="profile-section-label">
+                            SEMESTER MANAGEMENT
+                        </p>
+
+                        <h2>
+                            Manage Your Semester
+                        </h2>
+
+                        <p>
+                            Start a new semester or switch your active semester without changing your attendance history.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="semester.html"
+                        class="profile-management-btn"
+                    >
+                        Manage Semester →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT -->
+
+            <section class="profile-card account-danger-card">
+
+                <div>
+
+                    <p class="profile-section-label">
+                        ACCOUNT
+                    </p>
+
+                    <h2>
+                        Sign Out
+                    </h2>
+
+                    <p>
+                        Sign out of RollSync on this device.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="logoutBtn"
+                    class="logout-profile-btn"
+                >
+                    Logout
+                </button>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="profile-footer">
+
+                <span>
+                    RollSync
+                </span>
+
+                <span>
+                    by Abhijit Behera
+                </span>
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>
