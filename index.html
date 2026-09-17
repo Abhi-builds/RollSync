@@ -1,318 +1,758 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RollSync — Smart Attendance Tracker</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        RollSync — Smart Attendance Tracker
+    </title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
 </head>
+
 
 <body>
 
 <main class="landing-page">
 
+
     <!-- ================= NAVBAR ================= -->
+
     <nav class="landing-navbar">
 
         <div class="landing-brand">
-            <div class="landing-logo">R</div>
+
+            <div class="landing-logo">
+                R
+            </div>
 
             <div class="landing-brand-text">
-                <strong>RollSync</strong>
-                <span>by Riishu</span>
+
+                <strong>
+                    RollSync
+                </strong>
+
+                <span>
+                    by Riishu
+                </span>
+
             </div>
+
         </div>
 
-        <button class="landing-login-btn" id="loginNavBtn">
+
+        <button
+            class="landing-login-btn"
+            id="loginNavBtn"
+            type="button"
+        >
+
             Login
-            <span>→</span>
+
+            <span>
+                →
+            </span>
+
         </button>
 
     </nav>
 
 
+
     <!-- ================= HERO ================= -->
+
     <section class="landing-hero">
+
 
         <div class="hero-left">
 
+
             <div class="hero-badge">
+
                 <span class="badge-dot"></span>
+
                 Smart Semester Attendance
+
             </div>
 
+
             <h1>
+
                 Know your attendance.
-                <span>Stay ahead.</span>
+
+                <span>
+                    Stay ahead.
+                </span>
+
             </h1>
 
+
             <p class="hero-description">
+
                 RollSync makes semester attendance effortless.
+
                 Add your existing attendance once, update your
+
                 daily classes, and always know exactly where you stand.
+
             </p>
+
 
             <div class="hero-actions">
 
-                <button class="hero-primary-btn" id="getStartedBtn">
+
+                <button
+                    class="hero-primary-btn"
+                    id="getStartedBtn"
+                    type="button"
+                >
+
                     Get Started
-                    <span>→</span>
+
+                    <span>
+                        →
+                    </span>
+
                 </button>
 
-                <button class="hero-secondary-btn" id="loginBtn">
+
+                <button
+                    class="hero-secondary-btn"
+                    id="loginBtn"
+                    type="button"
+                >
+
                     I already have an account
+
                 </button>
+
 
             </div>
+
 
             <div class="hero-note">
-                <span>✓</span>
+
+                <span>
+                    ✓
+                </span>
+
                 Simple. Fast. No subject-wise complexity.
+
             </div>
+
 
         </div>
 
 
+
         <!-- ================= ATTENDANCE PREVIEW ================= -->
+
         <div class="hero-right">
+
 
             <div class="attendance-preview">
 
+
                 <div class="preview-top">
 
+
                     <div>
+
                         <span class="preview-label">
+
                             Current Attendance
+
                         </span>
 
+
                         <div class="preview-percentage">
+
                             80.16%
+
                         </div>
+
                     </div>
+
 
                     <div class="preview-status">
+
                         <span></span>
+
                         Safe
+
                     </div>
 
+
                 </div>
+
 
 
                 <div class="preview-progress">
+
                     <div class="preview-progress-fill"></div>
+
                 </div>
+
 
 
                 <div class="preview-stats">
 
+
                     <div class="preview-stat">
-                        <span>Attended</span>
-                        <strong>101</strong>
-                        <small>classes</small>
+
+                        <span>
+                            Attended
+                        </span>
+
+                        <strong>
+                            101
+                        </strong>
+
+                        <small>
+                            classes
+                        </small>
+
                     </div>
+
 
                     <div class="preview-divider"></div>
 
+
                     <div class="preview-stat">
-                        <span>Total</span>
-                        <strong>126</strong>
-                        <small>classes</small>
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong>
+                            126
+                        </strong>
+
+                        <small>
+                            classes
+                        </small>
+
                     </div>
 
+
                 </div>
+
 
 
                 <div class="preview-insight">
 
+
                     <div class="insight-icon">
+
                         ↑
+
                     </div>
+
 
                     <div>
-                        <span>Attendance buffer</span>
-                        <strong>You can miss 8 classes</strong>
+
+                        <span>
+                            Attendance buffer
+                        </span>
+
+                        <strong>
+                            You can miss 8 classes
+                        </strong>
+
                     </div>
 
+
                 </div>
+
 
 
                 <div class="preview-footer">
-                    <span>Semester 3</span>
+
+                    <span>
+                        Semester 3
+                    </span>
 
                     <span class="preview-target">
+
                         Target 75%
+
                     </span>
+
                 </div>
 
+
             </div>
+
 
 
             <div class="floating-card floating-card-one">
 
-                <span class="floating-icon">✓</span>
+
+                <span class="floating-icon">
+
+                    ✓
+
+                </span>
+
 
                 <div>
-                    <strong>Daily update</strong>
-                    <small>2 classes attended</small>
+
+                    <strong>
+                        Daily update
+                    </strong>
+
+                    <small>
+                        2 classes attended
+                    </small>
+
                 </div>
 
+
             </div>
+
 
 
             <div class="floating-card floating-card-two">
 
-                <span class="floating-icon">↗</span>
+
+                <span class="floating-icon">
+
+                    ↗
+
+                </span>
+
 
                 <div>
-                    <strong>Attendance tracked</strong>
-                    <small>Automatically calculated</small>
+
+                    <strong>
+                        Attendance tracked
+                    </strong>
+
+                    <small>
+                        Automatically calculated
+                    </small>
+
                 </div>
+
 
             </div>
 
+
         </div>
+
 
     </section>
 
 
+
     <!-- ================= FEATURES ================= -->
+
     <section class="landing-features">
+
 
         <div class="section-heading">
 
-            <span>HOW IT WORKS</span>
+
+            <span>
+                HOW IT WORKS
+            </span>
+
 
             <h2>
+
                 Attendance without the headache.
+
             </h2>
 
+
         </div>
+
 
 
         <div class="feature-grid">
 
+
             <div class="landing-feature">
 
+
                 <div class="feature-number">
+
                     01
+
                 </div>
+
 
                 <div class="feature-line"></div>
 
+
                 <h3>
+
                     Enter once
+
                 </h3>
 
+
                 <p>
+
                     Add the total classes conducted and classes
+
                     you have already attended when you start your semester.
+
                 </p>
+
 
             </div>
 
 
+
             <div class="landing-feature">
 
+
                 <div class="feature-number">
+
                     02
+
                 </div>
+
 
                 <div class="feature-line"></div>
 
+
                 <h3>
+
                     Update daily
+
                 </h3>
 
+
                 <p>
+
                     Enter how many classes happened today and
+
                     how many you attended. That's it.
+
                 </p>
 
+
             </div>
+
 
 
             <div class="landing-feature">
 
+
                 <div class="feature-number">
+
                     03
+
                 </div>
+
 
                 <div class="feature-line"></div>
 
+
                 <h3>
+
                     Know your status
+
                 </h3>
 
+
                 <p>
+
                     RollSync calculates your semester attendance,
+
                     target progress and attendance buffer automatically.
+
                 </p>
 
+
             </div>
+
 
         </div>
 
+
     </section>
+
 
 
     <!-- ================= CTA ================= -->
+
     <section class="landing-cta">
+
 
         <div class="cta-content">
 
+
             <span class="cta-label">
+
                 BUILT FOR STUDENTS
+
             </span>
 
+
             <h2>
+
                 Stop calculating.
-                <span>Start tracking.</span>
+
+                <span>
+                    Start tracking.
+                </span>
+
             </h2>
 
+
             <p>
+
                 Your attendance deserves a simple dashboard.
+
             </p>
 
-            <button class="cta-button" id="ctaGetStarted">
+
+            <button
+                class="cta-button"
+                id="ctaGetStarted"
+                type="button"
+            >
+
                 Create your RollSync account
-                <span>→</span>
+
+                <span>
+                    →
+                </span>
+
             </button>
 
+
         </div>
+
 
     </section>
 
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="landing-footer">
 
-        <div class="footer-brand">
+    <!-- ================= CONTACT ================= -->
 
-            <div class="footer-logo">
-                R
-            </div>
+    <section class="contact-section">
 
-            <div>
-                <strong>RollSync</strong>
-                <span>by Riishu</span>
-            </div>
+
+        <div class="section-heading">
+
+
+            <span>
+                CONTACT
+            </span>
+
+
+            <h2>
+                Need help with RollSync?
+            </h2>
+
+
+            <p>
+                Get in touch directly.
+            </p>
+
 
         </div>
 
+
+
+        <div class="contact-grid">
+
+
+            <!-- PHONE -->
+
+            <a
+                class="contact-card"
+                href="tel:+918763024942"
+            >
+
+                <div class="contact-icon">
+                    ☎
+                </div>
+
+
+                <div class="contact-content">
+
+                    <span>
+                        Phone
+                    </span>
+
+                    <strong>
+                        8763024942
+                    </strong>
+
+                    <small>
+                        Call directly
+                    </small>
+
+                </div>
+
+
+                <div class="contact-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+
+            <!-- EMAIL -->
+
+            <a
+                class="contact-card"
+                href="mailto:visualistfx@gmail.com?subject=RollSync%20Support"
+            >
+
+                <div class="contact-icon">
+                    ✉
+                </div>
+
+
+                <div class="contact-content">
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong>
+                        visualistfx@gmail.com
+                    </strong>
+
+                    <small>
+                        Send an email
+                    </small>
+
+                </div>
+
+
+                <div class="contact-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                class="contact-card"
+                href="https://wa.me/876324942"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <div class="contact-icon">
+                    💬
+                </div>
+
+
+                <div class="contact-content">
+
+                    <span>
+                        WhatsApp
+                    </span>
+
+                    <strong>
+                        8763024942
+                    </strong>
+
+                    <small>
+                        Message directly
+                    </small>
+
+                </div>
+
+
+                <div class="contact-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="landing-footer">
+
+
+        <div class="footer-brand">
+
+
+            <div class="footer-logo">
+
+                R
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    RollSync
+                </strong>
+
+                <span>
+                    by Riishu
+                </span>
+
+            </div>
+
+
+        </div>
+
+
         <p>
-            © 2026 RollSync · Built by Abhijit Behera
+
+            RollSync by Abhijit Behera
+
         </p>
 
+
+        <p>
+
+            © 2026 RollSync. All rights reserved.
+
+        </p>
+
+
     </footer>
+
 
 </main>
 
 
+
+<!-- ================= SCRIPT ================= -->
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
