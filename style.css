@@ -7845,3 +7845,342 @@ body {
 .remember-me span {
     user-select: none;
 }
+
+/* =========================================================
+   ROLLSYNC BRANDING
+   ========================================================= */
+
+.landing-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.landing-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+}
+
+.landing-brand-text strong {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.landing-brand-text span {
+    font-size: 11px;
+    margin-top: 4px;
+    opacity: 0.65;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   CONTACT SECTION
+   ========================================================= */
+
+.contact-section {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 24px 100px;
+}
+
+.contact-section .section-heading {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.contact-section .section-heading > span {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    opacity: 0.55;
+}
+
+.contact-section .section-heading h2 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.contact-section .section-heading p {
+    margin: 12px 0 0;
+    font-size: 15px;
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   CONTACT GRID
+   ========================================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+
+/* =========================================================
+   CONTACT CARD
+   ========================================================= */
+
+.contact-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-height: 115px;
+    padding: 22px;
+
+    text-decoration: none;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(0, 0, 0, 0.15);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CONTACT ICON
+   ========================================================= */
+
+.contact-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #f4f4f4;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   CONTACT CONTENT
+   ========================================================= */
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 15px;
+
+    min-width: 0;
+}
+
+.contact-content span {
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    opacity: 0.5;
+}
+
+.contact-content strong {
+    margin-top: 5px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #111;
+
+    word-break: break-word;
+}
+
+.contact-content small {
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   CONTACT ARROW
+   ========================================================= */
+
+.contact-arrow {
+    margin-left: auto;
+    padding-left: 12px;
+
+    font-size: 20px;
+
+    color: #111;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.contact-card:hover .contact-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.landing-footer {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 28px 7%;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+    background: #ffffff;
+}
+
+
+/* Footer brand */
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.footer-logo {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: #111;
+    color: #fff;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.footer-brand > div:last-child {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.footer-brand strong {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.footer-brand span {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    opacity: 0.55;
+}
+
+
+/* Footer text */
+
+.landing-footer p {
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section {
+        padding: 70px 20px 80px;
+    }
+
+    .contact-section .section-heading h2 {
+        font-size: 29px;
+    }
+
+    .landing-footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        padding: 30px 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .landing-brand-text strong {
+        font-size: 18px;
+    }
+
+    .landing-brand-text span {
+        font-size: 10px;
+    }
+
+    .contact-card {
+        min-height: 105px;
+        padding: 18px;
+    }
+
+    .contact-icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 12px;
+    }
+
+    .contact-content strong {
+        font-size: 13px;
+    }
+
+    .contact-arrow {
+        font-size: 17px;
+    }
+
+}
