@@ -13,7 +13,6 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_Rs8nX3UjNllzWPOLMwJHOA_dW9X7y4T";
 
-
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
@@ -26,11 +25,8 @@ const supabaseClient =
 // =========================================
 
 let currentUser = null;
-
 let currentProfile = null;
-
 let currentSemester = null;
-
 let attendanceChart = null;
 
 
@@ -147,6 +143,119 @@ function formatDate(dateString) {
             year: "numeric"
         }
     );
+}
+
+
+// =========================================
+// WEEKLY ATTENDANCE ROLLOVER
+// =========================================
+// Runs when the dashboard opens.
+// It asks Supabase to archive all daily
+// records before the current Monday.
+
+function getCurrentWeekStart() {
+
+    const today = new Date();
+
+    const day = today.getDay();
+
+    // Monday-based week
+    // Sunday = 0
+    // Monday = 1
+    // ...
+    // Saturday = 6
+
+    const difference =
+        (day + 6) % 7;
+
+    const monday =
+        new Date(today);
+
+    monday.setDate(
+        today.getDate() - difference
+    );
+
+    const year =
+        monday.getFullYear();
+
+    const month =
+        String(
+            monday.getMonth() + 1
+        ).padStart(2, "0");
+
+    const date =
+        String(
+            monday.getDate()
+        ).padStart(2, "0");
+
+    return `${year}-${month}-${date}`;
+}
+
+
+async function runWeeklyAttendanceRollover(
+    userId
+) {
+
+    try {
+
+        const weekStart =
+            getCurrentWeekStart();
+
+        console.log(
+            "RollSync weekly rollover started.",
+            {
+                userId: userId,
+                cutoffDate: weekStart
+            }
+        );
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "rollup_attendance_weekly",
+                {
+                    p_user_id:
+                        userId,
+
+                    p_cutoff_date:
+                        weekStart
+                }
+            );
+
+
+        if (error) {
+
+            console.error(
+                "Weekly rollover error:",
+                error
+            );
+
+            return false;
+        }
+
+
+        console.log(
+            "Weekly rollover completed.",
+            data
+        );
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Weekly rollover failed:",
+            error
+        );
+
+        return false;
+    }
 }
 
 
@@ -444,9 +553,9 @@ function calculateAttendanceInsights(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // CURRENT %
-    // -----------------------------------------
+    // ========================================
 
     const currentPercentage =
         total > 0
@@ -457,9 +566,9 @@ function calculateAttendanceInsights(
             : 0;
 
 
-    // -----------------------------------------
+    // ========================================
     // ATTEND NEXT
-    // -----------------------------------------
+    // ========================================
 
     const afterAttend =
         (
@@ -472,9 +581,9 @@ function calculateAttendanceInsights(
         afterAttend.toFixed(2) + "%";
 
 
-    // -----------------------------------------
+    // ========================================
     // MISS NEXT
-    // -----------------------------------------
+    // ========================================
 
     const afterMiss =
         total > 0
@@ -489,9 +598,9 @@ function calculateAttendanceInsights(
         afterMiss.toFixed(2) + "%";
 
 
-    // -----------------------------------------
+    // ========================================
     // CLASSES NEEDED
-    // -----------------------------------------
+    // ========================================
 
     let needed = 0;
 
@@ -530,9 +639,9 @@ function calculateAttendanceInsights(
         needed;
 
 
-    // -----------------------------------------
+    // ========================================
     // CLASSES CAN MISS
-    // -----------------------------------------
+    // ========================================
 
     let missable = 0;
 
@@ -565,9 +674,9 @@ function calculateAttendanceInsights(
         missable;
 
 
-    // -----------------------------------------
+    // ========================================
     // SMART MESSAGE
-    // -----------------------------------------
+    // ========================================
 
     if (total === 0) {
 
@@ -590,14 +699,18 @@ function calculateAttendanceInsights(
                 `more class${missable === 1 ? "" : "es"} ` +
                 `while staying at or above ${target}%.`;
 
-        } else {
+        }
+
+        else {
 
             smartMessageElement.textContent =
                 `You're at ${currentPercentage.toFixed(2)}%. ` +
                 `Keep attending classes to maintain your ${target}% target.`;
         }
 
-    } else {
+    }
+
+    else {
 
         const gap =
             target -
@@ -753,11 +866,9 @@ function updateDashboardUI(
 ) {
 
     const {
-
         currentTotal,
         currentAttended,
         percentage
-
     } = attendance;
 
 
@@ -767,9 +878,9 @@ function updateDashboardUI(
         ) || 75;
 
 
-    // -----------------------------------------
+    // ========================================
     // NAME
-    // -----------------------------------------
+    // ========================================
 
     const name =
         profile.full_name ||
@@ -791,9 +902,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // STUDENT INFO
-    // -----------------------------------------
+    // ========================================
 
     if (studentInfo) {
 
@@ -802,9 +913,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // ATTENDANCE %
-    // -----------------------------------------
+    // ========================================
 
     if (attendancePercentage) {
 
@@ -813,9 +924,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // TARGET
-    // -----------------------------------------
+    // ========================================
 
     if (minimumAttendance) {
 
@@ -824,9 +935,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // BASIC STATISTICS
-    // -----------------------------------------
+    // ========================================
 
     if (attendedClasses) {
 
@@ -842,9 +953,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // NEEDED / CAN MISS
-    // -----------------------------------------
+    // ========================================
 
     let needed = 0;
 
@@ -919,9 +1030,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // STATUS
-    // -----------------------------------------
+    // ========================================
 
     updateAttendanceStatus(
         percentage,
@@ -929,9 +1040,9 @@ function updateDashboardUI(
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // PROGRESS
-    // -----------------------------------------
+    // ========================================
 
     updateProgressBar(
         percentage,
@@ -939,9 +1050,9 @@ function updateDashboardUI(
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // SEMESTER INFORMATION
-    // -----------------------------------------
+    // ========================================
 
     if (semesterName) {
 
@@ -971,9 +1082,9 @@ function updateDashboardUI(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // INSIGHTS
-    // -----------------------------------------
+    // ========================================
 
     calculateAttendanceInsights(
         currentAttended,
@@ -1145,9 +1256,9 @@ function renderAttendanceHistory(
         html;
 
 
-    // -----------------------------------------
+    // ========================================
     // EDIT BUTTONS
-    // -----------------------------------------
+    // ========================================
 
     const editButtons =
         document.querySelectorAll(
@@ -1176,9 +1287,9 @@ function renderAttendanceHistory(
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // DELETE BUTTONS
-    // -----------------------------------------
+    // ========================================
 
     const deleteButtons =
         document.querySelectorAll(
@@ -1313,9 +1424,9 @@ function renderAttendanceChart(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // SORT OLD → NEW
-    // -----------------------------------------
+    // ========================================
 
     const sortedRecords =
         [...records].sort(
@@ -1337,9 +1448,9 @@ function renderAttendanceChart(
     const attendanceData = [];
 
 
-    // -----------------------------------------
+    // ========================================
     // STARTING POINT
-    // -----------------------------------------
+    // ========================================
 
     if (
         startingTotal > 0
@@ -1363,9 +1474,9 @@ function renderAttendanceChart(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // RUNNING ATTENDANCE
-    // -----------------------------------------
+    // ========================================
 
     let runningTotal =
         startingTotal;
@@ -1430,9 +1541,9 @@ function renderAttendanceChart(
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // TARGET DATA
-    // -----------------------------------------
+    // ========================================
 
     const targetData =
         labels.map(
@@ -1444,9 +1555,9 @@ function renderAttendanceChart(
         );
 
 
-    // -----------------------------------------
+    // ========================================
     // DESTROY OLD CHART
-    // -----------------------------------------
+    // ========================================
 
     if (attendanceChart) {
 
@@ -1456,9 +1567,9 @@ function renderAttendanceChart(
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // CREATE CHART
-    // -----------------------------------------
+    // ========================================
 
     attendanceChart =
         new Chart(
@@ -1467,12 +1578,10 @@ function renderAttendanceChart(
 
                 type: "line",
 
-
                 data: {
 
                     labels:
                         labels,
-
 
                     datasets: [
 
@@ -1500,7 +1609,6 @@ function renderAttendanceChart(
                                 false
 
                         },
-
 
                         {
 
@@ -1670,9 +1778,9 @@ async function loadDashboard() {
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // GET USER
-    // -----------------------------------------
+    // ========================================
 
     const user =
         await getCurrentUser();
@@ -1683,9 +1791,18 @@ async function loadDashboard() {
     }
 
 
-    // -----------------------------------------
+    // ========================================
+    // WEEKLY ATTENDANCE ROLLOVER
+    // ========================================
+
+    await runWeeklyAttendanceRollover(
+        user.id
+    );
+
+
+    // ========================================
     // GET PROFILE
-    // -----------------------------------------
+    // ========================================
 
     const profile =
         await loadProfile(
@@ -1703,9 +1820,9 @@ async function loadDashboard() {
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // GET CURRENT SEMESTER
-    // -----------------------------------------
+    // ========================================
 
     const semester =
         await loadCurrentSemester(
@@ -1728,9 +1845,9 @@ async function loadDashboard() {
     }
 
 
-    // -----------------------------------------
+    // ========================================
     // GET ATTENDANCE
-    // -----------------------------------------
+    // ========================================
 
     const records =
         await loadAttendanceRecords(
@@ -1739,9 +1856,9 @@ async function loadDashboard() {
         );
 
 
-    // -----------------------------------------
+    // ========================================
     // STARTING TOTALS
-    // -----------------------------------------
+    // ========================================
 
     const startingTotal =
         Number(
@@ -1755,9 +1872,9 @@ async function loadDashboard() {
         ) || 0;
 
 
-    // -----------------------------------------
+    // ========================================
     // CALCULATE CURRENT TOTALS
-    // -----------------------------------------
+    // ========================================
 
     const attendance =
         calculateAttendance(
@@ -1767,9 +1884,9 @@ async function loadDashboard() {
         );
 
 
-    // -----------------------------------------
+    // ========================================
     // UPDATE DASHBOARD
-    // -----------------------------------------
+    // ========================================
 
     updateDashboardUI(
         profile,
@@ -1778,18 +1895,18 @@ async function loadDashboard() {
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // HISTORY
-    // -----------------------------------------
+    // ========================================
 
     renderAttendanceHistory(
         records
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // CHART
-    // -----------------------------------------
+    // ========================================
 
     const target =
         Number(
@@ -1805,9 +1922,9 @@ async function loadDashboard() {
     );
 
 
-    // -----------------------------------------
+    // ========================================
     // LOG
-    // -----------------------------------------
+    // ========================================
 
     console.log(
         "RollSync dashboard loaded successfully.",
@@ -1928,7 +2045,7 @@ if (logoutBtn) {
 
 
 // =========================================
-// START
+// START DASHBOARD
 // =========================================
 
 loadDashboard();
