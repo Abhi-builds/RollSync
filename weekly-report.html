@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Weekly Report — RollSync</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Supabase -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+    </script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
+    <nav class="navbar">
+
+        <div class="navbar-inner">
+
+
+            <!-- BRAND -->
+
+            <a
+                href="dashboard.html"
+                class="brand"
+            >
+
+                <span class="brand-main">
+                    RollSync
+                </span>
+
+                <span class="brand-sub">
+                    by Riishu
+                </span>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a
+                    href="weekly-report.html"
+                    class="active"
+                >
+                    Weekly Report
+                </a>
+
+                <a href="semester-history.html">
+                    Semester History
+                </a>
+
+                <a href="semester.html">
+                    Semester
+                </a>
+
+                <a href="profile.html">
+                    Profile
+                </a>
+
+            </div>
+
+
+            <!-- USER -->
+
+            <div class="nav-user">
+
+                <span id="navUserName">
+                    Student
+                </span>
+
+                <button
+                    id="logoutBtn"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="weekly-page">
+
+
+        <!-- =====================================
+             HEADER
+        ====================================== -->
+
+        <header class="weekly-header">
+
+            <span class="section-eyebrow">
+                ATTENDANCE ANALYTICS
+            </span>
+
+            <h1>
+                Weekly Report
+            </h1>
+
+            <p id="reportSubtitle">
+                Your weekly attendance performance.
+            </p>
+
+        </header>
+
+
+
+        <!-- =====================================
+             CURRENT SEMESTER SUMMARY
+        ====================================== -->
+
+        <section class="weekly-summary-card">
+
+
+            <div class="summary-heading">
+
+                <div>
+
+                    <span class="summary-label">
+                        CURRENT SEMESTER
+                    </span>
+
+                    <h2 id="semesterName">
+                        Loading...
+                    </h2>
+
+                </div>
+
+
+                <div class="overall-attendance">
+
+                    <span>
+                        Overall Attendance
+                    </span>
+
+                    <strong id="overallPercentage">
+                        0.00%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUMMARY STATS -->
+
+            <div class="summary-stats">
+
+
+                <div class="summary-stat">
+
+                    <span>
+                        Total Classes
+                    </span>
+
+                    <strong id="overallTotal">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-stat">
+
+                    <span>
+                        Classes Attended
+                    </span>
+
+                    <strong id="overallAttended">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-stat">
+
+                    <span>
+                        Classes Missed
+                    </span>
+
+                    <strong id="overallMissed">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="summary-stat">
+
+                    <span>
+                        Attendance Target
+                    </span>
+
+                    <strong id="targetAttendance">
+                        75%
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =====================================
+             WEEKLY PERFORMANCE
+        ====================================== -->
+
+        <section>
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        HISTORY
+                    </span>
+
+                    <h2>
+                        Weekly Performance
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <section class="weekly-section">
+
+    <div class="weekly-section-heading">
+        <div>
+            <span class="weekly-section-label">
+                THIS WEEK
+            </span>
+
+            <h2>Current Week</h2>
+
+            <p>
+                Your live attendance for the current week.
+            </p>
+        </div>
+    </div>
+
+    <div id="currentWeekReport">
+        <div class="weekly-loading">
+            Loading current week...
+        </div>
+    </div>
+
+</section>
+
+            <!-- WEEKLY REPORTS -->
+
+            <div
+                id="weeklyReports"
+                class="weekly-reports-grid"
+            >
+
+                <div class="weekly-loading">
+                    Loading weekly reports...
+                </div>
+
+            </div>
+
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                id="emptyReports"
+                class="weekly-empty"
+                style="display: none;"
+            >
+
+                <div class="empty-icon">
+                    📊
+                </div>
+
+                <h3>
+                    No completed weeks yet
+                </h3>
+
+                <p>
+                    Your weekly attendance reports will appear here after a week is completed.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div>
+
+                <strong>
+                    RollSync
+                </strong>
+
+                <span>
+                    by Abhijit Behera
+                </span>
+
+            </div>
+
+            <span>
+                © 2026 RollSync
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         WEEKLY REPORT JAVASCRIPT
+    ========================================== -->
+
+    <script src="weekly-report.js"></script>
+
+
+</body>
+
+</html>
